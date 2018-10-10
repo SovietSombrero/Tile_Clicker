@@ -35,27 +35,6 @@ $(document).ready(function() {
     }
 }
     
-    draw(localStorage.colorChoice);
-
-    $("#button").click(function() {
-        if (check == false) {
-            ctx.clearRect(x,y,canvas.width,canvas.height);
-            document.getElementById("button").innerText = "Change to green?";
-            x = 10;
-            y = 10;
-            draw("navy");
-            check = true;
-            save("colorChoice", "navy");
-} else {
-    ctx.clearRect(x,y,canvas.width,canvas.height);
-    document.getElementById("button").innerText = "Change back to blue?";
-    x = 10;
-    y = 10;
-    draw("green");
-    check = false;
-    save("colorChoice","green");
-
-}
-})
+    draw();
      
 });
