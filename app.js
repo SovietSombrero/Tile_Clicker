@@ -9,8 +9,26 @@ $(document).ready(function() {
     var size = 50;
     var blocks = [];
     var check = false;
-    var colorchoice;
-        
+    
+   /* onmousemove = function(e){
+    console.log("mouse location:", e.clientX, e.clientY);      
+    
+    }
+    */
+    
+   canvas.onclick = function(e) {
+       for (var i = 0; i < blocks.length; i++) {
+           var a = blocks[i].x;
+           var s = blocks[i].y;
+           if (e.clientX-1424*.23 >= a && e.clientX-1424*.23  <= a+size) {
+               if (e.clientY-742-(37+21.4) >= s && e.clientY-742-(37+21.4) <= s+size) {
+                   console.log("FOUND IT!!! ",e.clientX,e.clientY, a,s);
+                   ctx.clearRect(a,s,size,size);
+               }
+           } 
+       }
+   }
+    
     function save(name, string) {
         localStorage.setItem(name, string);
     }
