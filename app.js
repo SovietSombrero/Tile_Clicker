@@ -4,12 +4,10 @@ $(document).ready(function() {
     var sb = document.getElementById("scoreBoard");
     var ctx2 = sb.getContext("2d");
     var ctx = canvas.getContext("2d");
-    var x = 10;
-    var y = 10;
     var size = 50;
     var blocks = [];
     var check = false;
-    
+   
    /* onmousemove = function(e){
     console.log("mouse location:", e.clientX, e.clientY);      
     
@@ -20,9 +18,8 @@ $(document).ready(function() {
        for (var i = 0; i < blocks.length; i++) {
            var a = blocks[i].x;
            var s = blocks[i].y;
-           if (e.clientX-1424*.23 >= a && e.clientX-1424*.23  <= a+size) {
-               if (e.clientY-742-(37+21.4) >= s && e.clientY-742-(37+21.4) <= s+size) {
-                   console.log("FOUND IT!!! ",e.clientX,e.clientY, a,s);
+           if (e.clientX-396 >= a && e.clientX-396 <= a+size) {
+               if (e.clientY-66 >= s && e.clientY-66 <= s+size) {
                    ctx.clearRect(a,s,size,size);
                }
            } 
@@ -38,21 +35,20 @@ $(document).ready(function() {
     ctx2.textAlign = "center";
     ctx2.fillText("Score Board",sb.width/2, sb.height/2-140);   
     
-    function draw(color) {
-    for (var i = 0; i < 6; i++ ) {
-        x = 10;
-        for (var r = 0; r < 10; r++) {
-        ctx.fillStyle = color;
+    function draw(x,y) {
+        ctx.fillStyle = "black";
         ctx.fillRect(x,y,size,size);
-        x += 60;
         blocks.push( {"x":x,"y":y} );
         //console.log(blocks[blocks.length - 1])
-       
-        }
-        y += 60;
+}
+
+function gameloop() {
+    
+    for(var i = 0; i < 10; i++) {
+        ranX = Math.floor((Math.random() * canvas.width)-size); 
+        ranY = Math.floor((Math.random() * canvas.height)-size);
+        draw(ranX, ranY);
     }
 }
-    
-    draw();
-     
+gameloop();     
 });
