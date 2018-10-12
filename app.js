@@ -36,11 +36,16 @@ $(document).ready(function() {
     ctx2.fillText("Score Board",sb.width/2, sb.height/2-140);   
     
     function draw(x,y) {
-        ctx.fillStyle = "black";
-        ctx.fillRect(x,y,size,size);
-        blocks.push( {"x":x,"y":y} );
-        //console.log(blocks[blocks.length - 1])
-}
+        if (x >= 0 && x <= canvas.width-size) {
+            if (y >= 0 && y <= canvas.height-size) {
+                ctx.fillStyle = "black";
+                ctx.fillRect(x,y,size,size);
+                blocks.push( {"x":x,"y":y} );
+            //console.log(blocks[blocks.length - 1])
+            } 
+        }
+    }
+
 
 function gameloop() {
     
