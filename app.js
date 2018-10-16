@@ -5,26 +5,19 @@ $(document).ready(function() {
     var ctx2 = sb.getContext("2d");
     var ctx = canvas.getContext("2d");
     var size = 50;
-    var blocks = [];
+    var block = {x: 0, y: 0};
     var check = false;
    
-   /* onmousemove = function(e){
-    console.log("mouse location:", e.clientX, e.clientY);      
-    
-    }
-    */
-    
-   canvas.onclick = function(e) {
-       for (var i = 0; i < blocks.length; i++) {
-           var a = blocks[i].x;
-           var s = blocks[i].y;
+   function click(e) {
+           var a = block.x;
+           var s = block.y;
            if (e.clientX-396 >= a && e.clientX-396 <= a+size) {
                if (e.clientY-66 >= s && e.clientY-66 <= s+size) {
                    ctx.clearRect(a,s,size,size);
+                   draw();
                }
            } 
-       }
-   }
+        }
     
     function save(name, string) {
         localStorage.setItem(name, string);
@@ -42,8 +35,8 @@ $(document).ready(function() {
             if (ranY >= 0 && ranY <= canvas.height-size) {
                 ctx.fillStyle = "black";
                 ctx.fillRect(ranX,ranY,size,size);
-                blocks.push( {"x":ranX,"y":ranY} );
-            //console.log(blocks[blocks.length - 1])
+                block.x = ranX;
+                block.y = ranY;
             }
             else {
           draw();
@@ -52,11 +45,11 @@ $(document).ready(function() {
      draw();
  }
 }
-function gameloop() {
     
-    for(var i = 0; i < 10; i++) {
-        draw();
-    }
+function gameloop() {
+    draw();
+    canvas.onclick = click;
 }
+    
 gameloop();     
 });
