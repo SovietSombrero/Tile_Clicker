@@ -35,24 +35,27 @@ $(document).ready(function() {
     ctx2.textAlign = "center";
     ctx2.fillText("Score Board",sb.width/2, sb.height/2-140);   
     
-    function draw(x,y) {
-        if (x >= 0 && x <= canvas.width-size) {
-            if (y >= 0 && y <= canvas.height-size) {
+    function draw() {
+        ranX = Math.floor((Math.random() * canvas.width)); 
+        ranY = Math.floor((Math.random() * canvas.height));
+        if (ranX >= 0 && ranX <= canvas.width-size) {
+            if (ranY >= 0 && ranY <= canvas.height-size) {
                 ctx.fillStyle = "black";
-                ctx.fillRect(x,y,size,size);
-                blocks.push( {"x":x,"y":y} );
+                ctx.fillRect(ranX,ranY,size,size);
+                blocks.push( {"x":ranX,"y":ranY} );
             //console.log(blocks[blocks.length - 1])
-            } 
-        }
-    }
-
-
+            }
+            else {
+          draw();
+    } 
+ } else {
+     draw();
+ }
+}
 function gameloop() {
     
     for(var i = 0; i < 10; i++) {
-        ranX = Math.floor((Math.random() * canvas.width)-size); 
-        ranY = Math.floor((Math.random() * canvas.height)-size);
-        draw(ranX, ranY);
+        draw();
     }
 }
 gameloop();     
