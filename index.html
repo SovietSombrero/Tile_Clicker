@@ -10,7 +10,7 @@
 <style type="text/css">
     body {
         background-color: darkorange;
-        color: white;
+        color: black;
         text-align: center;
     }
     #myCanvas {
@@ -24,10 +24,29 @@
         margin-left: 5%;
         background-color: black;
     }
+    #scoreCount {
+        display: inline-block;
+        margin-bottom: 0;
+        margin-right: 180;
+        color: black;
+        font-size: 18;
+    }
+    #timer {
+        display: inline-block;
+        margin-bottom: 0;
+        margin-left: 300;
+        margin-right: 40;
+        color: black;
+        font-size: 18;
+    }
 </style>
 </head>
 <body>
     <h1>Tile Clicker</h1>
+    <div id = "Counters">
+    <p id = "scoreCount">Score: </p>
+    <p id = "timer">Time: </p>
+    </div>
     <canvas id="myCanvas" width="600" height="400"></canvas>
     <canvas id = "scoreBoard" width = "200" height = "400">ScoreBoard</canvas>
 </body>
