@@ -8,7 +8,15 @@ $(document).ready(function() {
     var block = {x: 0, y: 0};
     var check = false;
     var score = 0;
-    var time = 30;
+    var time = 10;
+     ctx2.font = "bold 28px Arial";
+     ctx2.fillStyle = "white";  
+     ctx2.textAlign = "center";
+     ctx2.fillText("Score Board",sb.width/2, sb.height/2-140);
+     ctx2.font = "bold 14px Arial";
+     ctx2.fillStyle = "white";  
+     ctx2.textAlign = "center";
+     ctx2.fillText("You: " + localStorage.getItem("score"),sb.width/2, sb.height/2-100);
     
     
    function click(e) {
@@ -25,9 +33,6 @@ $(document).ready(function() {
            } 
         }
     
-    function save(name, string) {
-        localStorage.setItem(name, string);
-    }
          
     
     function draw() {
@@ -59,17 +64,21 @@ function gameloop() {
         $("p#Timer").text(`Time: ${time}`);
         if (time == 0) {
             clearInterval(myVar);
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            block.x = -50; 
+            block.y = -50;
+            ctx2.clearRect(0,0,sb.width,sb.height);
+            localStorage.setItem("score", score);
+            ctx2.font = "bold 28px Arial";
+            ctx2.fillStyle = "white";  
+            ctx2.textAlign = "center";
+            ctx2.fillText("Score Board",sb.width/2, sb.height/2-140);
+            ctx2.font = "bold 14px Arial";
+            ctx2.fillStyle = "white";  
+            ctx2.textAlign = "center";
+            ctx2.fillText("You: " + localStorage.getItem("score"),sb.width/2, sb.height/2-100);
         }
     }
 }
-    
-
-   
-    
-gameloop();  
-    
-    ctx2.font = "bold 28px Arial";
-    ctx2.fillStyle = "white";  
-    ctx2.textAlign = "center";
-    ctx2.fillText("Score Board",sb.width/2, sb.height/2-140);  
+gameloop();     
 });
