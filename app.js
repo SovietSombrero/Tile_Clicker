@@ -8,13 +8,14 @@ $(document).ready(function() {
     var block = {x: 0, y: 0};
     var check = false;
     var score = 0;
+    var time = 30;
     
     
    function click(e) {
            var a = block.x;
            var s = block.y;
            if (e.clientX-396 >= a && e.clientX-396 <= a+size) {
-               if (e.clientY-87 >= s && e.clientY-87 <= s+size) {
+               if (e.clientY-105 >= s && e.clientY-105 <= s+size) {
                    ctx.clearRect(a,s,size,size);
                    draw();
                    score += 1;
@@ -46,11 +47,24 @@ $(document).ready(function() {
      draw();
  }
 }
-    
+
+
 function gameloop() {
     draw();
     canvas.onclick = click;
+    var myVar = setInterval(Time, 1000);
+    
+    function Time() {
+        time -= 1;
+        $("p#Timer").text(`Time: ${time}`);
+        if (time == 0) {
+            clearInterval(myVar);
+        }
+    }
 }
+    
+
+   
     
 gameloop();  
     
